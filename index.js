@@ -109,6 +109,55 @@ const pAequorFactory = (id = 0, strand = []) => {
             return complementaryStrandDNA;
         },
 
+        //Most related strands
+        compareDNA(arr) {
+            
+            let topRankMatch = {
+                topMatch: 0,
+                percentage: 0,
+                ex1: {},
+                ex2: {},
+            };
+
+            let compareDNA = (specimenA, specimenB) => {
+                let match = 0;
+                for (let i = 0; i < this.dna.length; i++) {
+                    specimenA.dna[i] === specimenB.dna[i] && match++
+                }
+                return match;
+            };
+
+            let i = 0;
+            let cycle = 1;
+            while( i < arr.length -1){
+                let specimenA = arr[i];
+
+                for(let j = cycle; j < arr.length; j++){
+                    let specimenB = arr[j];
+                    let match = compareDNA(specimenA, specimenB);
+                    if(match > topRankMatch.topMatch){
+                        topRankMatch.topMatch = match;
+                        topRankMatch.ex1 = {
+                            id: specimenA.specimentNum,
+                            dna: specimenA.dna
+                            };
+                        topRankMatch.ex2 = {
+                            id: specimenB.specimentNum,
+                            dna: specimenB.dna
+                            };
+                    }
+                };
+                i++;
+                cycle++;
+            }
+
+            const percentageCalc = num => (100 / this.dna.length * num).toFixed('0');
+            topRankMatch.percentage = parseInt(percentageCalc(topRankMatch.topMatch));
+
+            return topRankMatch;
+
+        },
+
     }
 };
 
@@ -131,3 +180,8 @@ console.log(pAquarium[10].dna);
 console.log(pAquarium[10].dna);
 console.log("..Complementary DNA");
 console.log(pAquarium[10].complementStrand());
+
+let organism = pAequorFactory(0, mockUpStrand());
+
+console.log("Looking for a best match....");
+console.log(organism.compareDNA(pAquarium));
