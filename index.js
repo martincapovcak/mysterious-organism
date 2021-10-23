@@ -65,15 +65,16 @@ const pAequorFactory = (id = 0, strand = []) => {
             let DNAlength = this.dna.length;
             let match = 0;
 
-            const percentage = num => (100 / DNAlength * num).toFixed('0')
+            const percentageCalc = num => (100 / DNAlength * num).toFixed('0')
 
             for (let i = 0; i < DNAlength; i++) {
                 this.dna[i] === specimen.dna[i] && match++
             }
 
-            const inCommon = percentage(match);
+            const inCommon = percentageCalc(match);
 
-            console.log(`Specimen #${this.specimentNum} and specimen #${specimen.specimentNum} have ${inCommon}% DNA in common.`);
+            //console.log(`Specimen #${this.specimentNum} and specimen #${specimen.specimentNum} have ${inCommon}% DNA in common.`);
+            return `Specimen #${this.specimentNum} and specimen #${specimen.specimentNum} have ${inCommon}% DNA in common.`
         },
 
         //Will likely survive
@@ -81,13 +82,13 @@ const pAequorFactory = (id = 0, strand = []) => {
             const CG = ["C", "G"];
             let match = 0;
 
-            const percentage = num => (100 / this.dna.length * num).toFixed('0');
+            const percentageCalc = num => (100 / this.dna.length * num).toFixed('0');
 
             this.dna.forEach(base => {
                 base === CG[0] ? match++ : (base === CG[1] ? match++ : null)
             });
 
-            return percentage(match) >= 60 ? true : false;
+            return percentageCalc(match) >= 60 ? true : false;
         },
 
         //Complement strand
@@ -110,8 +111,12 @@ const pAequorFactory = (id = 0, strand = []) => {
         },
 
         //Most related strands
-        compareDNA(arr) {
-            
+        compareColony(arr) {
+            if(arr.length < 2){
+                console.log("Need to compare 2 samples at least!")
+                return null;
+            }
+
             let topRankMatch = {
                 topMatch: 0,
                 percentage: 0,
@@ -126,6 +131,7 @@ const pAequorFactory = (id = 0, strand = []) => {
                 }
                 return match;
             };
+
 
             let i = 0;
             let cycle = 1;
@@ -161,27 +167,92 @@ const pAequorFactory = (id = 0, strand = []) => {
     }
 };
 
-const pAquarium = [];
 
-for (let i = 0; i < 30; i++) {
-    pAquarium.push(pAequorFactory(i, mockUpStrand()));
+//Testing
+const log = console.log;
+const line = `\n---------------------\n`
+const organism = pAequorFactory(1, mockUpStrand());
+log(`\n"P. aequor" - the mystique organism looks like this: \n`);
+log(`ID: ${organism.specimentNum}\nDNA: ${organism.dna}\n`);
+
+log(line);
+
+log(`"P. aequor mutate sometimes."\n`);
+organism.mutate();
+log(`Blob blob, I am mutating right now!`);
+log(`ID: ${organism.specimentNum}\nDNA: ${organism.dna}\n`);
+log(`"Holly Darwin! In which genome is a change?"\n`);
+
+log(line);
+
+log(`Nevermind.`);
+log(`Look! Here is an another beutifull P. aequor.\n`);
+const organism2 = pAequorFactory(2, mockUpStrand());
+log(`ID: ${organism2.specimentNum}\nDNA: ${organism2.dna}\n`);
+log(`What a handsome! Hmm, ..lets compare them!\n`);
+log(`Look closer.\n`);
+log(`#1 DNA: ${organism.dna}
+#2 DNA: ${organism2.dna}\n`);
+log(`..comparing \n`);
+log(`COMPUTER: ${organism.compareDNA(organism2)}\n`);
+
+log(line);
+
+log(`Did you heard that?
+"P. aequor have a likelier chance of survival
+if their DNA is made up of 
+at least 60% 'C' or 'G' bases."\n`);
+log("Thats interesting, isn't it?\n");
+log(`Well, lets try the first one!\n`)
+log(`...testing\n`);
+log(`COMPUTER: ${organism.willLikelySurvive() ? `Yup! #1 buddy chances looks good.` : `Nope! #1 doesn't have this perspective.`}\n`);
+log(`What about a second one?\n`)
+log(`...testing\n`);
+log(`COMPUTER: ${organism2.willLikelySurvive() ? `Yup! #2 buddy chances looks good.` : `Nope! #2 doesn't have this perspective.`}\n`);
+
+log(line);
+
+log(`Lets make a colony!\n`);
+log(`..as a time goes colony grows.\n`)
+const colony = [];
+for (let i = 1; i <= 30; i++) {
+    colony.push(pAequorFactory(i, mockUpStrand()));
 };
+log(`COMPUTER: Colony contains ${colony.length} new grown "P. aequor" buddies already.\n`);
+colony.forEach(sample => {
+        let entity = {
+            id: sample.specimentNum,
+            dna: sample.dna
+        }
+        let note = `#${entity.id}${entity.id < 10 ? ' ' : ''} DNA: ${entity.dna}`
+        log(note);
+})
 
-console.log(pAquarium[10].specimentNum);
-console.log(pAquarium[10].dna);
-console.log(pAquarium[11].specimentNum);
-console.log(pAquarium[11].dna);
-pAquarium[10].compareDNA(pAquarium[11]);
-console.log(pAquarium[10].willLikelySurvive());
-pAquarium[10].mutate();
-console.log(pAquarium[10].specimentNum);
-console.log(pAquarium[10].dna);
+log("\nSeems like a nice party there.\n");
 
-console.log(pAquarium[10].dna);
-console.log("..Complementary DNA");
-console.log(pAquarium[10].complementStrand());
+log(line);
 
-let organism = pAequorFactory(0, mockUpStrand());
+log(`Will be nice to see a complementary strand from #30.\n`);
+log(`...processing\n`);
+let organism30x = colony[29].complementStrand();
+log(`DNA: ${colony[29].dna} --original
+DNA: ${organism30x} --complementary\n`);
 
-console.log("Looking for a best match....");
-console.log(organism.compareDNA(pAquarium));
+log(line);
+
+log(`Lets find the most similar buddies from colony.\n`);
+log(`...processing\n`);
+
+let cousin = organism.compareColony(colony);
+log(`COMPUTER: I found max ${cousin.percentage}% similarity
+between strand #${cousin.ex1.id} and #${cousin.ex2.id} in the colony
+of ${colony.length} "P. aequor" buddies.
+They are sharing ${cousin.topMatch} identical DNA bases
+in the same location.\n`);
+
+log(line);
+
+log("\nTime for a beer.");
+log("Cheers!\n");
+
+log(line);
