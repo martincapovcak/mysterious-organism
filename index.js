@@ -78,7 +78,7 @@ const pAequorFactory = (id = 0, strand = []) => {
 
         //Will likely survive
         willLikelySurvive() {
-            let CG = ["C", "G"];
+            const CG = ["C", "G"];
             let match = 0;
 
             const percentage = num => (100 / this.dna.length * num).toFixed('0');
@@ -88,6 +88,25 @@ const pAequorFactory = (id = 0, strand = []) => {
             });
 
             return percentage(match) >= 60 ? true : false;
+        },
+
+        //Complement strand
+        complementStrand() {
+            let complementaryStrandDNA = this.dna.map( base => {
+                    switch(base){
+                        case "A":
+                            return "T";
+                        case "T":
+                            return "A";
+                        case "C":
+                            return "G";
+                        case "G":
+                            return "C";
+                        default:
+                            break;
+                    }
+            })
+            return complementaryStrandDNA;
         },
 
     }
@@ -101,7 +120,14 @@ for (let i = 0; i < 30; i++) {
 
 console.log(pAquarium[10].specimentNum);
 console.log(pAquarium[10].dna);
+console.log(pAquarium[11].specimentNum);
+console.log(pAquarium[11].dna);
 pAquarium[10].compareDNA(pAquarium[11]);
 console.log(pAquarium[10].willLikelySurvive());
 pAquarium[10].mutate();
+console.log(pAquarium[10].specimentNum);
 console.log(pAquarium[10].dna);
+
+console.log(pAquarium[10].dna);
+console.log("..Complementary DNA");
+console.log(pAquarium[10].complementStrand());
