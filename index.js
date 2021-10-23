@@ -73,8 +73,8 @@ const pAequorFactory = (id = 0, strand = []) => {
 
             const inCommon = percentageCalc(match);
 
-            //console.log(`Specimen #${this.specimentNum} and specimen #${specimen.specimentNum} have ${inCommon}% DNA in common.`);
-            return `Specimen #${this.specimentNum} and specimen #${specimen.specimentNum} have ${inCommon}% DNA in common.`
+            console.log(`Specimen #${this.specimentNum} and specimen #${specimen.specimentNum} have ${inCommon}% DNA in common.`);
+            //return `Specimen #${this.specimentNum} and specimen #${specimen.specimentNum} have ${inCommon}% DNA in common.`
         },
 
         //Will likely survive
@@ -170,9 +170,14 @@ const pAequorFactory = (id = 0, strand = []) => {
 
 //Testing
 const log = console.log;
-const line = `\n---------------------\n`
+const line = `\n---------------------\n`;
+
+log(`\n\n\n***********************************\n\n`);
+log(`"P. aequor - the mystique organism"`)
+log(`\n\n***********************************\n\n\n`);
+
 const organism = pAequorFactory(1, mockUpStrand());
-log(`\n"P. aequor" - the mystique organism looks like this: \n`);
+log(`"P. aequor" - the mystique organism looks like this: \n`);
 log(`ID: ${organism.specimentNum}\nDNA: ${organism.dna}\n`);
 
 log(line);
@@ -193,8 +198,10 @@ log(`What a handsome! Hmm, ..lets compare them!\n`);
 log(`Look closer.\n`);
 log(`#1 DNA: ${organism.dna}
 #2 DNA: ${organism2.dna}\n`);
-log(`..comparing \n`);
-log(`COMPUTER: ${organism.compareDNA(organism2)}\n`);
+log(`...comparing \n`);
+log(`COMPUTER: `);
+organism.compareDNA(organism2);
+log();
 
 log(line);
 
