@@ -16,19 +16,28 @@ const mockUpStrand = () => {
 // Factory function
 const pAequorFactory = (id = 0, strand = []) => {
     return {
+        //Properties
         _specimenNum: id,
         _dna: strand,
         _dnaBases: ['A', 'T', 'C', 'G'],
+
+        //Getters
         get specimentNum(){
             return this._specimenNum
         },
         get dna() {
             return this._dna
         },
+        get dnaBases() {
+            return this._dnaBases
+        },
+
+        //Setters
         set dna(newDNA) {
             this._dna = newDNA;
         },
 
+        //Methods
         mutate() {
             const randomItem = arr => {
                 const formula = Math.floor(Math.random() * arr.length);
@@ -38,23 +47,25 @@ const pAequorFactory = (id = 0, strand = []) => {
                 }
             };
 
-            let changingBase = randomItem(this._dna);      
-            let filteredSequence = this._dnaBases.filter( base => {
-                return base !== changingBase.item;
+            let changingBase = randomItem(this.dna);      
+            let filteredSequence = this.dnaBases
+                .filter( base => {
+                    return base !== changingBase.item;
                 }
             )
             let mutatedBase = randomItem(filteredSequence);
        
-            this._dna[changingBase.index] = mutatedBase.item;      
+            this.dna[changingBase.index] = mutatedBase.item; 
+            
+            return this.dna;
         },
 
     }
 };
 
-const organism = pAequorFactory(1,mockUpStrand);
+const organism = pAequorFactory(1,mockUpStrand());
 console.log("ID: ", organism.specimentNum);
 console.log("DNA: ", organism.dna);
 
-organism.mutate();
 console.log("Mutating...");
-console.log("DNA: ", organism.dna);
+console.log(organism.mutate());
