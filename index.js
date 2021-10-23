@@ -78,18 +78,32 @@ const pAequorFactory = (id = 0, strand = []) => {
             const inCommon = percentage(match);
             
             console.log(`Specimen #${this.specimentNum} and specimen #${specimen.specimentNum} have ${inCommon}% DNA in common.`);
-        }
+        },
+
+        //Will likely survive
+        willLikelySurvive() {
+            let CG = ["C", "G"];
+            let match = 0;
+
+            const percentage = num => {
+                return (100 / this.dna.length * num).toFixed('0');
+            };
+
+            this.dna.forEach(base => {
+                base === CG[0] ? match++ : ( base === CG[1] ? match++ : null )
+            });
+
+            return percentage(match) >= 60 ? true : false;
+        },
 
     }
 };
 
-const ex1 = pAequorFactory(1,mockUpStrand());
-const ex2 = pAequorFactory(2,mockUpStrand());
-console.log("ID: ", ex1.specimentNum);
-console.log("DNA 1: ", ex1.dna);
+const pAquarium = [];
 
-console.log("ID: ", ex2.specimentNum);
-console.log("DNA 2: ", ex2.dna);
+for(let i = 0; i < 30; i++){
+    pAquarium.push(pAequorFactory(i,mockUpStrand()));
+};
 
-console.log("Comparing...");
-ex1.compareDNA(ex2);
+console.log(pAquarium[10].specimentNum);
+console.log(pAquarium[10].dna);
