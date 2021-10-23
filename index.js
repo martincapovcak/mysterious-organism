@@ -1,14 +1,14 @@
 // Returns a random DNA base
 const returnRandBase = () => {
     const dnaBases = ['A', 'T', 'C', 'G']
-    return dnaBases[Math.floor(Math.random() * 4)] 
+    return dnaBases[Math.floor(Math.random() * 4)]
 }
-  
+
 // Returns a random single stand of DNA containing 15 bases
 const mockUpStrand = () => {
     const newStrand = []
     for (let i = 0; i < 15; i++) {
-      newStrand.push(returnRandBase())
+        newStrand.push(returnRandBase())
     }
     return newStrand
 }
@@ -22,7 +22,7 @@ const pAequorFactory = (id = 0, strand = []) => {
         _dnaBases: ['A', 'T', 'C', 'G'],
 
         //Getters
-        get specimentNum(){
+        get specimentNum() {
             return this._specimenNum
         },
         get dna() {
@@ -38,7 +38,6 @@ const pAequorFactory = (id = 0, strand = []) => {
         },
 
         //Methods
-
         //Mutating DNA
         mutate() {
             const randomItem = arr => {
@@ -49,16 +48,15 @@ const pAequorFactory = (id = 0, strand = []) => {
                 }
             };
 
-            let changingBase = randomItem(this.dna);      
-            let filteredSequence = this.dnaBases
-                .filter( base => {
-                    return base !== changingBase.item;
-                }
-            )
-            let mutatedBase = randomItem(filteredSequence);
-       
-            this.dna[changingBase.index] = mutatedBase.item; 
+            let changingBase = randomItem(this.dna);
             
+            let filteredSequence = this.dnaBases
+                .filter(base => base !== changingBase.item)
+
+            let mutatedBase = randomItem(filteredSequence);
+
+            this.dna[changingBase.index] = mutatedBase.item;
+
             return this.dna;
         },
 
@@ -67,16 +65,14 @@ const pAequorFactory = (id = 0, strand = []) => {
             let DNAlength = this.dna.length;
             let match = 0;
 
-            const percentage = num => {
-                return (100 / DNAlength * num).toFixed('0');
-            };
+            const percentage = num => (100 / DNAlength * num).toFixed('0')
 
-            for(let i = 0; i < DNAlength; i++){
+            for (let i = 0; i < DNAlength; i++) {
                 this.dna[i] === specimen.dna[i] && match++
             }
 
             const inCommon = percentage(match);
-            
+
             console.log(`Specimen #${this.specimentNum} and specimen #${specimen.specimentNum} have ${inCommon}% DNA in common.`);
         },
 
@@ -85,12 +81,10 @@ const pAequorFactory = (id = 0, strand = []) => {
             let CG = ["C", "G"];
             let match = 0;
 
-            const percentage = num => {
-                return (100 / this.dna.length * num).toFixed('0');
-            };
+            const percentage = num => (100 / this.dna.length * num).toFixed('0');
 
             this.dna.forEach(base => {
-                base === CG[0] ? match++ : ( base === CG[1] ? match++ : null )
+                base === CG[0] ? match++ : (base === CG[1] ? match++ : null)
             });
 
             return percentage(match) >= 60 ? true : false;
@@ -101,8 +95,8 @@ const pAequorFactory = (id = 0, strand = []) => {
 
 const pAquarium = [];
 
-for(let i = 0; i < 30; i++){
-    pAquarium.push(pAequorFactory(i,mockUpStrand()));
+for (let i = 0; i < 30; i++) {
+    pAquarium.push(pAequorFactory(i, mockUpStrand()));
 };
 
 console.log(pAquarium[10].specimentNum);
