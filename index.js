@@ -49,7 +49,7 @@ const pAequorFactory = (id = 0, strand = []) => {
             };
 
             let changingBase = randomItem(this.dna);
-            
+
             let filteredSequence = this.dnaBases
                 .filter(base => base !== changingBase.item)
 
@@ -100,4 +100,8 @@ for (let i = 0; i < 30; i++) {
 };
 
 console.log(pAquarium[10].specimentNum);
+console.log(pAquarium[10].dna);
+pAquarium[10].compareDNA(pAquarium[11]);
+console.log(pAquarium[10].willLikelySurvive());
+pAquarium[10].mutate();
 console.log(pAquarium[10].dna);
