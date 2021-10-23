@@ -38,6 +38,8 @@ const pAequorFactory = (id = 0, strand = []) => {
         },
 
         //Methods
+
+        //Mutating DNA
         mutate() {
             const randomItem = arr => {
                 const formula = Math.floor(Math.random() * arr.length);
@@ -60,12 +62,34 @@ const pAequorFactory = (id = 0, strand = []) => {
             return this.dna;
         },
 
+        //Compare DNA
+        compareDNA(specimen) {
+            let DNAlength = this.dna.length;
+            let match = 0;
+
+            const percentage = num => {
+                return (100 / DNAlength * num).toFixed('0');
+            };
+
+            for(let i = 0; i < DNAlength; i++){
+                this.dna[i] === specimen.dna[i] && match++
+            }
+
+            const inCommon = percentage(match);
+            
+            console.log(`Specimen #${this.specimentNum} and specimen #${specimen.specimentNum} have ${inCommon}% DNA in common.`);
+        }
+
     }
 };
 
-const organism = pAequorFactory(1,mockUpStrand());
-console.log("ID: ", organism.specimentNum);
-console.log("DNA: ", organism.dna);
+const ex1 = pAequorFactory(1,mockUpStrand());
+const ex2 = pAequorFactory(2,mockUpStrand());
+console.log("ID: ", ex1.specimentNum);
+console.log("DNA 1: ", ex1.dna);
 
-console.log("Mutating...");
-console.log(organism.mutate());
+console.log("ID: ", ex2.specimentNum);
+console.log("DNA 2: ", ex2.dna);
+
+console.log("Comparing...");
+ex1.compareDNA(ex2);
