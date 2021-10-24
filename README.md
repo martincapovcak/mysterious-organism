@@ -21,11 +21,12 @@ Default: 0<br/>
 
 ### > _dna_
 Type: array<br/>
-Default: []<br/>
+Default: random<br/>
 
 ## Getters
 * pAequorFactory.specimenNum
 * pAequorFactory.dna
+* pAequorFactory.dnaBases
 
 ### pAequorFactory.**specimenNum**
 Return: number<br/>
@@ -66,9 +67,9 @@ pAequorFactory.dna = ['A', 'T', 'C', 'G'];
 * pAequorFactory.compareColony()
 
 ### pAequorFactory.**mutate()**
-> Mutates one genome in DNA sequence.
+> Mutates one genome in DNA sequence. Returns mutated DNA.
 
-Return: Object<br/>
+Return: Array<br/>
 
 Example:
 ```
@@ -100,10 +101,10 @@ organism1.willLikelySurvive();
 ```
 
 ### pAequorFactory.**complementStrand()**
-> Returning complement DNA sequence to original DNA sequence.<br/>
+> Create complement DNA sequence to original DNA sequence.<br/>
 > Follows a key: A to T, C to G and viceversa;
 
-Return: Object<br/>
+Return: Array<br/>
 
 Example:
 ```

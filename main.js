@@ -109,11 +109,6 @@ const pAequorFactory = (id = 0, strand = mockUpStrand()) => {
 
         //Most related strands
         compareColony(arr) {
-            if (arr.length < 2) {
-                console.log("Need to compare 2 samples at least!")
-                return null;
-            }
-
             let topRankMatch = {
                 topMatch: 0,
                 percentage: 0,
