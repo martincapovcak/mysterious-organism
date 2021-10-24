@@ -7,8 +7,8 @@ Project focused on **factory functions**.
 ```
 const { pAequorFactory } = require('./main.js');
 ```
----
 
+## Function
 ### Parrameters
 #### **pAequorFactory(_specimenNum,dna_)**
 
@@ -32,13 +32,21 @@ Type: number<br/>
 Default: 0<br/>
 Set the specimen numper.<br/>
 
----
+Example:
+```
+pAequorFactory.specimenNum = 1;
+```
 
 #### pAequorFactory.**dna(_dna_)**
 #### > _dna_
 Type: array<br/>
 Default: []<br/>
 Set the specimen DNA sequence.<br/>
+
+Example:
+```
+pAequorFactory.dna = ['A','B','C','D'];
+```
 
 ### Methods
 
