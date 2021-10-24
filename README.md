@@ -6,49 +6,74 @@ Project focused on **factory functions**.
 ## Usage
 ```
 const { pAequorFactory } = require('./main.js');
+
+const organism1 = pAequorFactory();
 ```
 
 ## Function
-### Parrameters
-#### **pAequorFactory(_specimenNum,dna_)**
+### **pAequorFactory( _specimenNum, dna_ )**
+Returns: Object
 
 #### > _specimenNum_
 Type: number<br/>
 Default: 0<br/>
 
-#### > _dna_
+### > _dna_
 Type: array<br/>
 Default: []<br/>
 
-### Setters
-* pAequorFactory.specimenNum()
-* pAequorFactory.dna()
+---
 
-***
+## Getters
+* pAequorFactory.specimenNum
+* pAequorFactory.dna
 
-#### pAequorFactory.**specimenNum(_num_)**
-#### > _num_
+### pAequorFactory.**specimenNum**
 Type: number<br/>
 Default: 0<br/>
-Set the specimen numper.<br/>
+
+Example:
+```
+console.log(pAequorFactory.specimenNum);
+// Returns 0
+```
+
+### pAequorFactory.**dna**
+Type: array<br/>
+Default: []<br/>
+
+Example:
+```
+console.log(pAequorFactory.specimenNum);
+// Returns []
+```
+---
+
+## Setters
+* pAequorFactory.specimenNum
+* pAequorFactory.dna
+
+### pAequorFactory.**specimenNum**
+Type: number<br/>
+Default: 0<br/>
 
 Example:
 ```
 pAequorFactory.specimenNum = 1;
 ```
 
-#### pAequorFactory.**dna(_dna_)**
-#### > _dna_
+### pAequorFactory.**dna**
 Type: array<br/>
 Default: []<br/>
-Set the specimen DNA sequence.<br/>
 
 Example:
 ```
-pAequorFactory.dna = ['A','B','C','D'];
+pAequorFactory.dna = ['A', 'T', 'C', 'G'];
 ```
 
-### Methods
+---
+
+## Methods
 
 * pAequorFactory.mutate()
 * pAequorFactory.compareDNA()
@@ -56,37 +81,70 @@ pAequorFactory.dna = ['A','B','C','D'];
 * pAequorFactory.complementStrand()
 * pAequorFactory.compareColony()
 
-***
+### pAequorFactory.**mutate()**
+> Mutates one genome in DNA sequence.<br/>Updates original DNA sequence with mutation.
 
-#### pAequorFactory.**mutate()**
+Example:
+```
+organism1.mutate();
 
-Mutate DNA sequence and set it as new dna.<br/>
+console.log(organism1.dna);
+// Returns changed DNA
+```
 
----
-
-#### pAequorFactory.**compareDNA(_organism_)**
+### pAequorFactory.**compareDNA(_organism_)**
+> Compares DNA sequences.
 #### > _organism_
 Type: object<br/>
+Default: undefined
 
-Compare dna sequence with "organism" dna.<br/>
+Example:
+```
+organism1.compareDNA(organism2);
 
----
+// Returns log of compared species numbers and genome match in %
+```
 
-#### pAequorFactory.**willLikelySurvive()**
-Tests if organism has bigger chance to survive.<br/>
+### pAequorFactory.**willLikelySurvive()**
+> Test of specific genome bases presence and their amounth in DNA sequence.
 
----
+Example:
+```
+organism1.willLikelySurvive();
 
-#### pAequorFactory.**complementStrand()**
-Returns complement DNA sequence</br>
+// Returns <boolean>
+```
 
----
+### pAequorFactory.**complementStrand()**
+> Returning complement DNA sequence to original DNA sequence.<br/>
+> Follows a key: A to T, C to G and viceversa;
 
-#### pAequorFactory.**compareColony(_colony_)**
+Example:
+```
+let organism2 = organism1.complementStrand();
+console.log(organism2.dna)
+
+// Returns complement DNA
+```
+
+### pAequorFactory.**compareColony(_colony_)**
+> Compares all organism in colony and returns closest two.
 #### > _colony_
 Type: array<br/>
+Default: undefined
 
-Compares all organism in colony and returns closest two</br>
+Example:
+```
+let colony = [
+    organism1,
+    organism2,
+    organism3,
+    ...
+];
+
+organism.compareColony(colony);
+
+```
 
 ---
 
