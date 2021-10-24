@@ -1,7 +1,8 @@
 # Mysterious Organism
-> Exercise made as JS challenge project<br/>
-on [codecademy](https://codecademy.com) learning path.<br/>
-Project focused on **factory functions**.
+> Exercise made as JS challenge project at [codecademy](https://codecademy.com) learning path.<br/>
+Project was focused on **factory functions**.
+>
+> Mysterious Organism DNA is based on "A","C","T","G" genes.
 
 ## Usage
 ```
@@ -10,15 +11,15 @@ const { pAequorFactory } = require('./main.js');
 const organism1 = pAequorFactory();
 ```
 
-## Function
-### **pAequorFactory( _specimenNum, dna_ )**
+# Function
+## **pAequorFactory( _specimenNum, dna_ )**
 Return: Object
 
-#### > _specimenNum_
+### > _specimenNum_
 Type: number<br/>
 Default: 0<br/>
 
-#### > _dna_
+### > _dna_
 Type: array<br/>
 Default: []<br/>
 
@@ -65,18 +66,20 @@ pAequorFactory.dna = ['A', 'T', 'C', 'G'];
 * pAequorFactory.compareColony()
 
 ### pAequorFactory.**mutate()**
-> Mutates one genome in DNA sequence.<br/>Updates original DNA sequence with mutation.
+> Mutates one genome in DNA sequence.
+
+Return: Object<br/>
 
 Example:
 ```
 organism1.mutate();
-
-console.log(organism1.dna);
-// Returns changed DNA
 ```
 
 ### pAequorFactory.**compareDNA(_organism_)**
 > Compares DNA sequences.
+
+Return: log<br/>
+
 #### > _organism_
 Type: object<br/>
 Default: undefined
@@ -84,53 +87,55 @@ Default: undefined
 Example:
 ```
 organism1.compareDNA(organism2);
-
-// Returns log of compared species numbers and genome match in %
 ```
 
 ### pAequorFactory.**willLikelySurvive()**
 > Test of specific genome bases presence and their amounth in DNA sequence.
 
+Return: Bool<br/>
+
 Example:
 ```
 organism1.willLikelySurvive();
-
-// Returns <boolean>
 ```
 
 ### pAequorFactory.**complementStrand()**
 > Returning complement DNA sequence to original DNA sequence.<br/>
 > Follows a key: A to T, C to G and viceversa;
 
+Return: Object<br/>
+
 Example:
 ```
 let organism2 = organism1.complementStrand();
-console.log(organism2.dna)
-
-// Returns complement DNA
 ```
 
 ### pAequorFactory.**compareColony(_colony_)**
 > Compares all organism in colony and returns closest two.
+
+Return: Object<br/>
+
 #### > _colony_
 Type: array<br/>
 Default: undefined
 
 Example:
 ```
-let colony = [
-    organism1,
-    organism2,
-    organism3,
-    ...
-];
-
 organism.compareColony(colony);
-
 ```
 
-## Testing
-module testing preview 
-![Code](./public/aqueror-colony.png)"creation of organism colony - testing output"
+# Testing
+> Factory function test, based somewhere meanwhile in some unknown story.
 
-![Code](./public/aqueror-colony-compare.png)"finding the most simillar DNAs - testing output"
+Example:
+```
+$ node test.js
+```
+
+Story preview 
+
+![Code](./public/aqueror-colony.png)<br/>
+"creation of organism colony - testing output"
+
+![Code](./public/aqueror-colony-compare.png)<br/>
+"finding the most simillar DNAs - testing output"
