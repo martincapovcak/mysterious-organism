@@ -33,6 +33,10 @@ const pAequorFactory = (id = 0, strand = mockUpStrand()) => {
         },
 
         //Setters
+        set specimenNum(newID) {
+            this._specimenNum = newID;
+        },
+
         set dna(newDNA) {
             this._dna = newDNA;
         },
@@ -60,9 +64,14 @@ const pAequorFactory = (id = 0, strand = mockUpStrand()) => {
 
             let mutatedBase = randomItem(filteredSequence);
 
-            this.dna[changingBase.index] = mutatedBase.item;
+            let mutatedDNA =[];
+            this.dna.map(base => {
+                mutatedDNA.push(base)
+            });
 
-            return this.dna;
+            mutatedDNA[changingBase.index] = mutatedBase.item;
+
+            return mutatedDNA;
         },
 
         //Compare DNA
