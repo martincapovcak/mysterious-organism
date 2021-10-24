@@ -37,6 +37,11 @@ const pAequorFactory = (id = 0, strand = []) => {
             this._dna = newDNA;
         },
 
+        //Helper foo
+        percentageCalc(num) {
+            return (100 / this.dna.length * num).toFixed('0');
+        },
+
         //Methods
         //Mutating DNA
         mutate() {
@@ -47,11 +52,11 @@ const pAequorFactory = (id = 0, strand = []) => {
                     index: formula
                 }
             };
-
             let changingBase = randomItem(this.dna);
 
             let filteredSequence = this.dnaBases
-                .filter(base => base !== changingBase.item)
+            
+                .filter(base => base !== changingBase.item);
 
             let mutatedBase = randomItem(filteredSequence);
 
@@ -63,15 +68,12 @@ const pAequorFactory = (id = 0, strand = []) => {
         //Compare DNA
         compareDNA(specimen) {
             let match = 0;
-            const percentageCalc = num => (100 / this.dna.length * num).toFixed('0')
 
             for (let i = 0; i < this.dna.length; i++) {
                 this.dna[i] === specimen.dna[i] && match++
             }
 
-            const inCommon = percentageCalc(match);
-
-            console.log(`Specimen #${this.specimenNum} and specimen #${specimen.specimenNum} have ${inCommon}% DNA in common.`);
+            console.log(`Specimen #${this.specimenNum} and specimen #${specimen.specimenNum} have ${this.percentageCalc(match)}% DNA in common.`);
         },
 
         //Will likely survive
@@ -79,13 +81,11 @@ const pAequorFactory = (id = 0, strand = []) => {
             const CG = ["C", "G"];
             let match = 0;
 
-            const percentageCalc = num => (100 / this.dna.length * num).toFixed('0');
-
             this.dna.forEach(base => {
                 base === CG[0] ? match++ : (base === CG[1] ? match++ : null)
             });
 
-            return percentageCalc(match) >= 60 ? true : false;
+            return this.percentageCalc(match) >= 60 ? true : false;
         },
 
         //Complement strand
@@ -120,7 +120,7 @@ const pAequorFactory = (id = 0, strand = []) => {
                 ex1: {},
                 ex2: {},
             };
-
+            
             let compareDNA = (specimenA, specimenB) => {
                 let match = 0;
                 for (let i = 0; i < this.dna.length; i++) {
@@ -153,11 +153,8 @@ const pAequorFactory = (id = 0, strand = []) => {
                 cycle++;
             }
 
-            const percentageCalc = num => (100 / this.dna.length * num).toFixed('0');
-            topRankMatch.percentage = parseInt(percentageCalc(topRankMatch.topMatch));
-
+            topRankMatch.percentage = parseInt(this.percentageCalc(topRankMatch.topMatch));
             return topRankMatch;
-
         },
 
     }
