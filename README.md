@@ -7,3 +7,5 @@ Project focused on factory functions
 ## Testing
 module testing preview 
 ![Code](./public/aqueror-colony.png)"creation of organism colony - testing output"
+
+![Code](./public/aqueror-colony-compare.png)"finding the most simillar DNAs - testing output"
