@@ -1,30 +1,32 @@
-const {pAequorFactory, mockUpStrand} = require('./main.js');
+const { pAequorFactory } = require('./main.js');
 
 const organism = pAequorFactory();
-const organism1 = pAequorFactory(1,mockUpStrand());
-const organism2 = pAequorFactory(2,mockUpStrand());
+const organism1 = pAequorFactory(1);
+const organism2 = pAequorFactory(2);
 const colony = [];
 for (let i = 1; i <= 30; i++) {
-    colony.push(pAequorFactory(i, mockUpStrand()));
+    colony.push(pAequorFactory(i));
 };
 
-//Testing Story
 const log = console.log;
 const line = `\n---------------------\n`;
 
+
+//Testing Story
 log(`\n\n\n***********************************\n\n`);
-log(`"P. aequor - the mystique organism"`)
+log(`"Pila aequor - the mystique organism"`)
 log(`\n\n***********************************\n\n\n`);
 
-log(`"P. aequor" - the mystique organism looks like this: \n`);
+log(`The mystique organism looks like this: \n`);
 log(`ID: ${organism1.specimenNum}\nDNA: ${organism1.dna}\n`);
 
 log(line);
 
-log(`"P. aequor mutate sometimes."\n`);
-organism1.mutate();
+log(`"P. aequor mutate, sometimes."\n`);
+let mutatedDNA = organism1.mutate();
 log(`Blob blob, I am mutating right now!`);
-log(`ID: ${organism1.specimenNum}\nDNA: ${organism1.dna}\n`);
+log(`DNA: ${organism1.dna}`);
+log(`DNA: ${mutatedDNA}\n`);
 log(`"Holly Darwin! In which genome is a change?"\n`);
 
 log(line);
