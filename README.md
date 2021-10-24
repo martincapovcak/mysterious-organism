@@ -12,42 +12,27 @@ const organism1 = pAequorFactory();
 
 ## Function
 ### **pAequorFactory( _specimenNum, dna_ )**
-Returns: Object
+Return: Object
 
 #### > _specimenNum_
 Type: number<br/>
 Default: 0<br/>
 
-### > _dna_
+#### > _dna_
 Type: array<br/>
 Default: []<br/>
-
----
 
 ## Getters
 * pAequorFactory.specimenNum
 * pAequorFactory.dna
 
 ### pAequorFactory.**specimenNum**
-Type: number<br/>
+Return: number<br/>
 Default: 0<br/>
 
-Example:
-```
-console.log(pAequorFactory.specimenNum);
-// Returns 0
-```
-
 ### pAequorFactory.**dna**
-Type: array<br/>
+Return: array<br/>
 Default: []<br/>
-
-Example:
-```
-console.log(pAequorFactory.specimenNum);
-// Returns []
-```
----
 
 ## Setters
 * pAequorFactory.specimenNum
@@ -70,8 +55,6 @@ Example:
 ```
 pAequorFactory.dna = ['A', 'T', 'C', 'G'];
 ```
-
----
 
 ## Methods
 
@@ -145,9 +128,6 @@ let colony = [
 organism.compareColony(colony);
 
 ```
-
----
-
 
 ## Testing
 module testing preview 
