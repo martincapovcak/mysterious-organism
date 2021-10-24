@@ -1,6 +1,6 @@
 const {pAequorFactory, mockUpStrand} = require('./main.js');
 
-const organism = pAequorFactory(0,mockUpStrand());
+const organism = pAequorFactory();
 const organism1 = pAequorFactory(1,mockUpStrand());
 const organism2 = pAequorFactory(2,mockUpStrand());
 const colony = [];

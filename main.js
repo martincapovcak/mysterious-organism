@@ -14,7 +14,7 @@ const mockUpStrand = () => {
 }
 
 // Factory function
-const pAequorFactory = (id = 0, strand = []) => {
+const pAequorFactory = (id = 0, strand = mockUpStrand()) => {
     return {
         //Properties
         _specimenNum: id,
