@@ -46,7 +46,7 @@ Default: 0<br/>
 
 Example:
 ```
-pAequorFactory.specimenNum = 1;
+organism1.specimenNum = 1;
 ```
 
 ### pAequorFactory.**dna**
@@ -55,7 +55,7 @@ Default: []<br/>
 
 Example:
 ```
-pAequorFactory.dna = ['A', 'T', 'C', 'G'];
+organism1.dna = ['A', 'T', 'C', 'G'];
 ```
 
 ## Methods
@@ -101,14 +101,14 @@ organism1.willLikelySurvive();
 ```
 
 ### pAequorFactory.**complementStrand()**
-> Create complement DNA sequence to original DNA sequence.<br/>
+> Complementary DNA strand to original DNA sequence.<br/>
 > Follows a key: A to T, C to G and viceversa;
 
 Return: Array<br/>
 
 Example:
 ```
-let organism2 = organism1.complementStrand();
+organism1.complementStrand();
 ```
 
 ### pAequorFactory.**compareColony(_colony_)**
@@ -133,7 +133,7 @@ Example:
 $ node test.js
 ```
 
-Story preview 
+Story preview:
 
 ![Code](./public/aqueror-colony.png)<br/>
 "creation of organism colony - testing output"
