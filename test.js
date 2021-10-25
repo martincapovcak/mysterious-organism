@@ -22,11 +22,11 @@ log(`ID: ${organism1.specimenNum}\nDNA: ${organism1.dna}\n`);
 
 log(line);
 
-log(`"P. aequor mutate, sometimes."\n`);
-let mutatedDNA = organism1.mutate();
-log(`Blob blob, I am mutating right now!`);
-log(`DNA: ${organism1.dna}`);
-log(`DNA: ${mutatedDNA}\n`);
+log(`P. aequor mutate, sometimes.\n`);
+log(`"Blob blob, I am mutating right now!"`);
+log(`#${organism1.specimenNum} DNA: ${organism1.dna}`);
+organism1.mutate();
+log(`#${organism1.specimenNum} DNA: ${organism1.dna}\n`);
 log(`"Holly Darwin! In which genome is a change?"\n`);
 
 log(line);
@@ -77,9 +77,9 @@ log(line);
 
 log(`Will be nice to see a complementary strand from #30.\n`);
 log(`...processing\n`);
-let organism30x = colony[29].complementStrand();
+let complementDNA = colony[29].complementStrand();
 log(`DNA: ${colony[29].dna} --original
-DNA: ${organism30x} --complementary\n`);
+DNA: ${complementDNA} --complementary\n`);
 
 log(line);
 
