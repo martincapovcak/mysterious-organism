@@ -64,14 +64,9 @@ const pAequorFactory = (id = 0, strand = mockUpStrand()) => {
 
             let mutatedBase = randomItem(filteredSequence);
 
-            let mutatedDNA =[];
-            this.dna.map(base => {
-                mutatedDNA.push(base)
-            });
+            this.dna[changingBase.index] = mutatedBase.item;
 
-            mutatedDNA[changingBase.index] = mutatedBase.item;
-
-            return mutatedDNA;
+            return this.dna;
         },
 
         //Compare DNA
