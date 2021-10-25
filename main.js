@@ -1,3 +1,11 @@
+/*
+ * Title: Mysterious Organism
+ * Description: Organism factory function
+ * Author: Martin Capovcak
+ * Date: 25/10/21
+ *
+ */
+
 // Returns a random DNA base
 const returnRandBase = () => {
     const dnaBases = ['A', 'T', 'C', 'G']
